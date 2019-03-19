@@ -24,10 +24,18 @@ n = 2;
 e = round(nthroot(N,n)); 
 
 % TODO a function for this
-P1 = [R(1,dmn) R(1,dmn)];
-P2 = [R(2,dmn) R(1,dmn)];
-P3 = [R(1,dmn) R(2,dmn)];
-P4 = [R(2,dmn) R(2,dmn)];
+% P1 = [R(1,dmn) R(1,dmn)];
+% P2 = [R(2,dmn) R(1,dmn)];
+% P3 = [R(1,dmn) R(2,dmn)];
+% P4 = [R(2,dmn) R(2,dmn)];
+
+%function/script
+P = [R(1,dmn) R(1,dmn)];
+for j=1:e
+    for i=1:e
+        P = [P; R(i,dmn) R(j,dmn)];
+    end
+end
 
 
 
