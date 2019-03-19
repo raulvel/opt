@@ -40,7 +40,9 @@ e = round(nthroot(N,n));
 P = [R(1,dmn) R(1,dmn)];
 for j=1:e
     for i=1:e
-        P = [P; R(i,dmn) R(j,dmn)];
+        if(~(i==1 && j ==1))%condition so we don't generate P1 again
+            P = [P; R(i,dmn) R(j,dmn)];
+        end
     end
 end
 
