@@ -37,7 +37,15 @@ for j=1:e
     end
 end
 
-
+% best partition???
+bestz = goldstein_price(P(1,:));
+bestay = P(1,:);
+for i=2:size(P,1)
+    if(bestz > goldstein_price(P(i,:)))
+        bestz = goldstein_price(P(i,:));
+        bestay = P(i,:);
+    end
+end
 
 
 
