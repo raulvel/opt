@@ -8,7 +8,14 @@ dmn = [a b];
 [x,y] = meshgrid(linspace(a,b), linspace(a,b));
 
 % the function
-z = (1 + ((x+y+1).^2) .* (19-14.*x+3.*x.^2-13.*y+6.*x.*y+3.*(y.^2))) .* (30 + ((2.*x-3.*y).^2) .* (18-32.*x+12.*(x.^2)+48.*y-36.*x.*y+27.*(y.^2)));
+%z = (1 + ((x+y+1).^2) .* (19-14.*x+3.*x.^2-13.*y+6.*x.*y+3.*(y.^2))) .* (30 + ((2.*x-3.*y).^2) .* (18-32.*x+12.*(x.^2)+48.*y-36.*x.*y+27.*(y.^2)));
+%using the function to get z
+z = x;
+for i=1:size(x,1)
+    for j=1:size(x,1)
+        z(i,j) = goldstein_price([x(i,j) y(i,j)]);
+    end
+end
 
 % plot the function
 surf(x,y,z);
