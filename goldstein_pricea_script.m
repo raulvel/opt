@@ -37,11 +37,12 @@ e = round(nthroot(N,n));
 % P4 = [R(2,dmn) R(2,dmn)];
 
 %function/script
-P = [R(1,dmn) R(1,dmn)];
+clear P;
+P = [R(1,dmn,e) R(1,dmn,e)];
 for j=1:e
     for i=1:e
         if(~(i==1 && j ==1))%condition so we don't generate P1 again
-            P = [P; R(i,dmn) R(j,dmn)];
+            P = [P; R(i,dmn,e) R(j,dmn,e)];
         end
     end
 end
