@@ -23,7 +23,7 @@ surf(x,y,z);
 %% partitioning
 % N - no. of partitions
 N = 9; %chose 5 because idk
-
+hold all;
 % n - no. of input variables
 n = 2;
 
@@ -57,5 +57,28 @@ for i=2:size(P,1)
     end
 end
 
+%plot points
+% for i=1:N
+%     plot3(P(i,1),P(i,2),goldstein_price([P(i,1),P(i,2)]),'*');
+% end
 
-
+clear P;
+dmn2 = [a a+((b-a)/e)];
+dmn3 = [a a+((b-a)/e)];
+P = [dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
+for j=1:(e)
+    dmn2 = [a a+((b-a)/e)];
+    for i=1:(e)
+        if(~(i==1 && j ==1))%condition so we don't generate P1 again
+            P = [P;dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
+            dmn2 = dmn2+1.333333;
+        end
+    end
+    dmn3 = dmn3+1.333333;
+end
+    
+for i=1:N
+    plot3(P(i,2),P(i,1),goldstein_price([P(i,2),P(i,1)]),'*');
+end
+    
+    
