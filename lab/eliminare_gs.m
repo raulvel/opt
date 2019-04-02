@@ -1,4 +1,4 @@
-function [interval,n,d] =eliminare_gs(func, range, e, extrm)
+function [min,n,d] =eliminare_gs(func, range, e)
 %ELIMINARE Summary of this function goes here
 %   Detailed explanation goes here
     a=range(1);
@@ -10,12 +10,12 @@ function [interval,n,d] =eliminare_gs(func, range, e, extrm)
         d = d*phi;
         x1 = b-d;
         x2 = a+d;
-        if extrm*func(x1)>=extrm*func(x2)
+        if func(x1)<=func(x2)
             b=x2;
         else
             a=x1;
         end
         n = n+1;
     end
-    interval = [a,b];
+    min = mean([a,b]);
 end
