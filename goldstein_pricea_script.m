@@ -22,7 +22,7 @@ surf(x,y,z);
 
 %% partitioning
 % N - no. of partitions
-N = 4; %chose 5 because idk
+N = 9; %chose 5 because idk
 
 % n - no. of input variables
 n = 2;
@@ -39,8 +39,8 @@ e = round(nthroot(N,n));
 %function/script
 clear P;
 P = [R(1,dmn,e) R(1,dmn,e)];
-for j=1:e
-    for i=1:e
+for j=1:(e)
+    for i=1:(e)
         if(~(i==1 && j ==1))%condition so we don't generate P1 again
             P = [P; R(i,dmn,e) R(j,dmn,e)];
         end
