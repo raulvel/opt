@@ -65,6 +65,7 @@ end
 clear P;
 dmn2 = [a a+((b-a)/e)];
 dmn3 = [a a+((b-a)/e)];
+%a+rand*(b-a)
 P = [dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
 for j=1:(e)
     dmn2 = [a a+((b-a)/e)];
