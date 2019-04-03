@@ -30,12 +30,58 @@ n = 2;
 % domain of each input varialbe???dunno what e is for sure
 e = round(nthroot(N,n)); 
 
-% TODO a function for this
-% P1 = [R(1,dmn) R(1,dmn)];
-% P2 = [R(2,dmn) R(1,dmn)];
-% P3 = [R(1,dmn) R(2,dmn)];
-% P4 = [R(2,dmn) R(2,dmn)];
+clear P;
+dmn2 = [a a+((b-a)/e)];
+dmn3 = [a a+((b-a)/e)];
+%a+rand*(b-a)
+P = [dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
+for j=1:(e)
+    dmn2 = [a a+((b-a)/e)];
+    for i=1:(e)
+        if(~(i==1 && j ==1))%condition so we don't generate P1 again
+            P = [P;dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
+        end
+        dmn2 = dmn2+1.333333;
+    end
+    dmn3 = dmn3+1.333333;
+end
+%short tabu list - all of the initial partitions 
+STTL = P;
 
+%plot points
+for i=1:N
+    plot3(P(i,1),P(i,2),goldstein_price([P(i,1),P(i,2)]),'*');
+end
+    
+% best partition
+bestz = goldstein_price(P(1,:));
+bestxy = P(1,:);
+for i=2:size(P,1)
+    if(bestz > goldstein_price(P(i,:)))
+        bestz = goldstein_price(P(i,:));
+        bestxy = P(i,:);
+    end
+end
+
+% neighbour search strateg
+
+%current best solution
+C = [bestxy bestz];
+%step percentage
+alpha = .2;
+%direcion percentage
+beta = .2;
+%no. of neighbours
+nn = 7;
+%no. of crowns
+P = alpha*nn;
+Q = beta*nn;
+M = round(nn - (P+Q));
+
+
+
+
+%% obsolete
 %function/script
 clear P;
 P = [R(1,dmn,e) R(1,dmn,e)];
@@ -46,39 +92,3 @@ for j=1:(e)
         end
     end
 end
-
-% best partition???
-bestz = goldstein_price(P(1,:));
-bestay = P(1,:);
-for i=2:size(P,1)
-    if(bestz > goldstein_price(P(i,:)))
-        bestz = goldstein_price(P(i,:));
-        bestay = P(i,:);
-    end
-end
-
-%plot points
-% for i=1:N
-%     plot3(P(i,1),P(i,2),goldstein_price([P(i,1),P(i,2)]),'*');
-% end
-
-clear P;
-dmn2 = [a a+((b-a)/e)];
-dmn3 = [a a+((b-a)/e)];
-P = [dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
-for j=1:(e)
-    dmn2 = [a a+((b-a)/e)];
-    for i=1:(e)
-        if(~(i==1 && j ==1))%condition so we don't generate P1 again
-            P = [P;dmn2(1)+rand*(dmn2(2)-dmn2(1)) dmn3(1)+rand*(dmn3(2)-dmn3(1))];
-            dmn2 = dmn2+1.333333;
-        end
-    end
-    dmn3 = dmn3+1.333333;
-end
-    
-for i=1:N
-    plot3(P(i,2),P(i,1),goldstein_price([P(i,2),P(i,1)]),'*');
-end
-    
-    
