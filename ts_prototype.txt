@@ -1,0 +1,21 @@
+P; %best point in partition
+
+best = P;
+bc = P; %best candidate
+tl = P; %tabu list
+while(stop)
+	neigh = get_neigh(bc); %points around the best candidate
+	for i=1:size(neigh)
+		if(~(ismember(neigh(i),tl,'rows') && (f(neigh(i))<f(bc))
+			bc = neigh(i);
+		end
+	end
+	if(f(bc)<f(best))
+		best = bc;
+	end
+	tl = [tl; bc];
+	if(size(tl) > maxtabusize)
+		tl = tl(2:end);
+	end
+end
+%best is min
