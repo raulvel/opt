@@ -3,7 +3,8 @@ P; %best point in partition
 best = P;
 bc = P; %best candidate
 tl = P; %tabu list
-while(stop)
+stop = 0;
+while(stop<5)
 	neigh = get_neigh(bc); %points around the best candidate
 	for i=1:size(neigh)
 		if(~(ismember(neigh(i),tl,'rows') && (f(neigh(i))<f(bc))
@@ -12,6 +13,8 @@ while(stop)
 	end
 	if(f(bc)<f(best))
 		best = bc;
+	else
+		stop++;
 	end
 	tl = [tl; bc];
 	if(size(tl) > maxtabusize)
