@@ -9,7 +9,7 @@ while(stop>4)
     %generate neighbours
     neigh = gen_crowns(s,4);
     %best neighbour
-    bn = [3 3];
+    bn = neigh(1,:);
     for i=1:size(neigh,1)
         if(~(is_tabu(neigh(i,:),tl))&&(goldstein_price(neigh(i,1),neigh(i,2)) < goldstein_price(bn(1),bn(2))))
             bn = neigh(i,:);
