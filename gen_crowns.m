@@ -1,7 +1,7 @@
 function points = gen_crowns(P, k )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
-rup = 0.3;
+rup = 0.01;
 rdown = 0;
 
 r = (rup-rdown)*rand + rdown;
