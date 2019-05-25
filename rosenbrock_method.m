@@ -1,18 +1,23 @@
-close all;
+%close all;
+%rosenbrock method for finding the minimum
 syms x1 x2;
-f(x1,x2) = 3*x1^2 + 2*x1^4 - x2 + x2^2 + 1;
-
+f(x1,x2) = (1 + (x1+x2+1).^2 .* (19-14*x1+3*x1.^2-13*x2+6*x1.*x2+3*x2.^2)) .* (30 + (2*x1-3*x2).^2 .* (18-32*x1+12*x1.^2+48*x2-36*x1.*x2+27*x2.^2));
+%f(x1,x2) = (100*(x1^2-x2)^2 + (x1-1)^2);
 %initial values
 e = 0.01;
-P = rand*[6 6];
-P1 = [5 5];
+Ptt = [0 0];
+
+for jj=1:100
+
+P = [rand*4-2 rand*4-2];
+P1 = [rand*4-2 rand*4-2];
 d = [1 1;-1 1];
 s = [2 3];
 alpha = 3;
 beta = -0.8;
 k = 1;
 
-ezmesh(f);
+%ezmesh(f);
 hold all;
 tic
 while(norm(P-P1)>e)
@@ -25,7 +30,7 @@ while(norm(P-P1)>e)
             if(f(P(1) + s(i)*d(i,1),P(2) + s(2)*d(i,2)) <= f(P(1),P(2)))
                 P1 = P;
                 P = P + s(i)*d(i,:)
-                plot3(P(1),P(2),f(P(1),P(2)),'*');
+                %plot3(P(1),P(2),f(P(1),P(2)),'*');
                 k = k + 1;
                 success(i) = 1;
                 c(i) = c(i) + s(i);
@@ -50,4 +55,8 @@ while(norm(P-P1)>e)
 end
 P
 toc
-plot3(P(1),P(2),f(P(1),P(2)),'*');
+Ptt=[Ptt;P];
+end
+
+Ptt=Ptt(2:end,:);
+plot3(Ptt(:,1),Ptt(:,2),f(Ptt(:,1),Ptt(:,2)),'*');

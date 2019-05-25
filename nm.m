@@ -4,7 +4,7 @@ function best = nm(P )
 
 
 %initial values
-e = 0.01;
+e = 0.0001;
 v1 = P;
 v2 = P + [0 1];
 v3 = P + [1 1];

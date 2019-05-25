@@ -1,5 +1,5 @@
 function yes = is_tabu(P, tl)
-%UNTITLED3 Summary of this function goes here
+%is_tabu Check if the point P is in the tabu list
 %   Detailed explanation goes here
 radius = 0.3;%the radius in which it checks
 yes = 1;

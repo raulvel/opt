@@ -1,5 +1,5 @@
 function points = gen_crowns(P, k )
-%UNTITLED2 Summary of this function goes here
+%gen_crowns Generatte k points in a circle around point P
 %   Detailed explanation goes here
 rup = 0.01;
 rdown = 0;

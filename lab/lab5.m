@@ -40,6 +40,7 @@ hold all;
 beta = eye(2);
 P1 = P;
 x = P - P1;
+k = 0;
 while eval((norm(grad(P(1),P(2)))))>0.01
     plot3(P(1),P(2),f(P(1),P(2)),'*');
     %add
@@ -53,7 +54,7 @@ while eval((norm(grad(P(1),P(2)))))>0.01
 %     B = B + ((G'*G)/(G*x)) - (((B*x)*(B*x)')/(x'*B*x));
     d = beta*(-eval(grad(P(1),P(2))));
     l(s) = f((P(1) + s*d(1)),(P(2) + s*d(2)));
-    Sk = eliminare_gs(l,[0, 20], e*0.01, -1);
+    Sk = eliminare_gs(l,[0, 20], 0.01*0.01);
     P_old = P;
     P = P + (Sk*d)
     deltaP = P - P_old;    

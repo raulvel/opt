@@ -63,24 +63,10 @@ for i=2:size(P,1)
     end
 end
 
-% neighbour search strateg
-
-%current best solution
-C = [bestxy bestz];
-%step percentage
-alpha = .2;
-%direcion percentage
-beta = .2;
-%no. of neighbours
-nn = 7;
-%no. of crowns
-P = alpha*nn;
-Q = beta*nn;
-M = round(nn - (P+Q));
-
-
-
-
+%do tabu search
+bpointts = sts(bestxy,STTL);
+%nelder-mead for intesification
+nm(bpointts)
 %% obsolete
 %function/script
 clear P;
